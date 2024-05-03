@@ -1,9 +1,3 @@
-# configuration to make symfony 6 work as expected
-
-framework:
-  session:
-    storage_factory_id: session.storage.factory.mock_file
-
 security:
   providers:
     in_memory:

@@ -18,23 +18,6 @@ To install the bundle together with Symfony HttpClient, run:
 If you want to use something else than Symfony HttpClient, see Packagist for a list of
 available `client implementations`_.
 
-If you use an old version of Symfony, you
-must manually register the bundle to your application:
-
-.. code-block:: php
-
-    <?php
-    // app/AppKernel.php
-
-    public function registerBundles()
-    {
-        $bundles = array(
-            // ...
-            new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
-            // ...
-        );
-    }
-
 For most features, you also need to :ref:`configure a caching proxy <foshttpcache:proxy-configuration>`.
 
 .. _requirements:

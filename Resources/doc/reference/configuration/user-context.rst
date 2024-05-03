@@ -148,10 +148,6 @@ For the handler to work:
 * Symfony’s default behavior of regenerating the session id when users log in
   and out must be enabled (``invalidate_session``).
 
-.. warning::
-    The cache invalidation on logout only works correctly with FOSHttpCacheBundle 2.2 and later.
-    It was broken in older versions of the bundle.
-
 .. tip::
     The logout handler is active on all firewalls.  If your application has
     multiple firewalls with different user context, you need to create your own
@@ -232,12 +228,11 @@ Custom providers need to:
 * implement the ``FOS\HttpCache\UserContext\ContextProvider`` interface
 * be tagged with ``fos_http_cache.user_context_provider``.
 
-.. versionadded:: 2.4.0
-    Since version 2.4.0, context providers are autoconfigured. With
-    autoconfigure enabled in Symfony 3.3 and newer, your custom providers
-    are tagged automatically, with a default priority of 0. For older
-    versions, or if autoconfigure is disabled, or to override the
-    priority, check out the rest of this section.
+.. tip::
+    Context providers are autoconfigured. With autoconfigure enabled in
+    Symfony, your custom providers are tagged automatically, with a default
+    priority of 0. If you disabled autoconfigure, or to override the priority,
+    check out the rest of this section.
 
 If you need context providers to run in a specific order, you can specify the
 optional ``priority`` parameter for the tag. The higher the priority, the

@@ -136,8 +136,7 @@ way to determine if it was manually set. If the full header is only
 You can prevent the cache control on specific controller actions by calling
 ``FOS\HttpCacheBundle\EventListener\CacheControlListener::setSkip()``. When
 skip is set to ``true``, no cache rules are applied. This service can be
-autowired - in older versions of the bundle, use the service
-``fos_http_cache.event_listener.cache_control``.
+autowired.
 
 ``cache_control``
 """""""""""""""""
@@ -220,9 +219,7 @@ directives are flags that are included when set to true:
 
 This enables a simplistic ETag calculated as md5 hash of the response body:
 
-.. versionadded:: 2.2
-
-    You can set up ETag to be strong or weak by setting the option to "strong" or "weak" respectively.
+You can set up ETag to be strong or weak by setting the option to "strong" or "weak" respectively.
 
 .. code-block:: yaml
 

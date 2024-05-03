@@ -74,11 +74,6 @@ To add tags to responses, use the ``ResponseTagger::addTags`` method::
         }
     }
 
-.. versionadded:: 2.3.2
-    Autowiring support has been added in version 2.3.2. In older versions of
-    the bundle, you need to inject the service
-    ``fos_http_cache.http.symfony_response_tagger`` into your controller.
-
 To invalidate tags, use the ``CacheManager::invalidateTags($tags)`` method::
 
     use FOS\HttpCacheBundle\CacheManager;
@@ -99,11 +94,6 @@ To invalidate tags, use the ``CacheManager::invalidateTags($tags)`` method::
             // ...
         }
     }
-
-.. versionadded:: 2.3.2
-    Autowiring support has been added in version 2.3.2. In older versions of
-    the bundle, you need to inject the service ``fos_http_cache.cache_manager``
-    in your controller.
 
 Tagging from Twig Templates
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
