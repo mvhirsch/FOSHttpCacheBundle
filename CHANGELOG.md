@@ -13,6 +13,7 @@ Changelog
 * Removed deprecated `FOS\HttpCacheBundle\UserContext\AnonymousRequestMatcher`, use the 
   `FOS\HttpCache\UserContext\AnonymousRequestMatcher` class.
 * Removed deprecated `ContextInvalidationLogoutHandler`, use `ContextInvalidationSessionLogoutHandler` instead.
+* Fixed service loading to not fail when Twig is not available.
 
 2.x
 ===
