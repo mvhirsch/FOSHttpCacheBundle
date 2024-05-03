@@ -16,9 +16,7 @@ use FOS\HttpCacheBundle\Tests\Functional\SessionHelperTrait;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\User\InMemoryUser;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -72,22 +70,7 @@ class SwitchUserListenerTest extends WebTestCase
 
     public function loginAsAdmin(KernelBrowser $client)
     {
-        if (method_exists($client, 'loginUser')) {
-            $client->loginUser($this->createAdminUser(), self::FIREWALL_NAME);
-
-            return;
-        }
-
-        $session = $client->getContainer()->get('session');
-
-        $user = $this->createAdminUser();
-
-        $token = new UsernamePasswordToken($user, self::FIREWALL_NAME, $user->getRoles());
-        $session->set('_security_'.self::FIREWALL_NAME, serialize($token));
-        $session->save();
-
-        $cookie = new Cookie($session->getName(), $session->getId());
-        $client->getCookieJar()->set($cookie);
+        $client->loginUser($this->createAdminUser(), self::FIREWALL_NAME);
     }
 
     private function createAdminUser(): UserInterface

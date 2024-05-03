@@ -23,7 +23,6 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\EventListener\AbstractSessionListener;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Symfony\Component\HttpKernel\Kernel;
 
 class UserContextListenerTest extends TestCase
 {
@@ -238,10 +237,6 @@ class UserContextListenerTest extends TestCase
 
     public function testOnKernelResponseSetsNoAutoCacheHeader()
     {
-        if (\version_compare('4.1', Kernel::VERSION, '>')) {
-            $this->markTestSkipped('Test only relevant for Symfony 4.1 and up');
-        }
-
         $request = new Request();
         $request->setMethod('HEAD');
         $request->headers->set('X-User-Context-Hash', 'hash');
@@ -263,10 +258,6 @@ class UserContextListenerTest extends TestCase
 
     public function testOnKernelResponseDoesNotSetNoAutoCacheHeaderWhenNoSessionListener()
     {
-        if (\version_compare('4.1', Kernel::VERSION, '>')) {
-            $this->markTestSkipped('Test only relevant for Symfony 4.1 and up');
-        }
-
         $request = new Request();
         $request->setMethod('HEAD');
         $request->headers->set('X-User-Context-Hash', 'hash');
@@ -292,10 +283,6 @@ class UserContextListenerTest extends TestCase
 
     public function testOnKernelResponseSetsNoAutoCacheHeaderWhenCustomHeader()
     {
-        if (\version_compare('4.1', Kernel::VERSION, '>')) {
-            $this->markTestSkipped('Test only relevant for Symfony 4.1 and up');
-        }
-
         $request = new Request();
         $request->setMethod('HEAD');
         $request->headers->set('X-User-Context-Hash', 'hash');
@@ -316,10 +303,6 @@ class UserContextListenerTest extends TestCase
 
     public function testOnKernelResponseSetsNoAutoCacheHeaderWhenCustomHeaderAndNoAddVaryOnHash()
     {
-        if (\version_compare('4.1', Kernel::VERSION, '>')) {
-            $this->markTestSkipped('Test only relevant for Symfony 4.1 and up');
-        }
-
         $request = new Request();
         $request->setMethod('HEAD');
         $request->headers->set('X-User-Context-Hash', 'hash');
@@ -345,10 +328,6 @@ class UserContextListenerTest extends TestCase
 
     public function testOnKernelResponseDoesNotSetNoAutoCacheHeaderWhenNoCustomHeaderAndNoAddVaryOnHash()
     {
-        if (\version_compare('4.1', Kernel::VERSION, '>')) {
-            $this->markTestSkipped('Test only relevant for Symfony 4.1 and up');
-        }
-
         $request = new Request();
         $request->setMethod('HEAD');
         $request->headers->set('X-User-Context-Hash', 'hash');

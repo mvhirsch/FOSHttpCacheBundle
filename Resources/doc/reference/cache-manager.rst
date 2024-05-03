@@ -18,11 +18,6 @@ By *refreshing* a piece of content, a fresh copy will be fetched right away.
 The cache manager is available in the Symfony DI container using autowiring
 with the ``FOS\HttpCacheBundle\CacheManager`` class.
 
-.. versionadded:: 2.3.2
-    Autowiring support has been added in version 2.3.2. In older versions of
-    the bundle, you need to explicitly use the service name
-    ``fos_http_cache.cache_manager``.
-
 .. _cache manager invalidation:
 
 ``invalidatePath()``

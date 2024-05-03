@@ -213,13 +213,11 @@ refer to the :ref:`FOSHttpCache documentation for Symfony <foshttpcache:symfony 
 
 For ``servers``, ``base_url``, ``tags_header`` and ``header_length``, see above.
 
-.. versionadded:: 2.3
-
-    You can omit the whole ``http`` configuration and use ``use_kernel_dispatcher: true``
-    instead. This will call the kernel directly instead of executing a real
-    HTTP request. Note that your kernel and bootstrapping need to be adjusted
-    to support this feature. The setup is explained in the
-    :ref:`Symfony HttpCache chapter <symfony_http_cache_kernel_dispatcher>`.
+You can omit the whole ``http`` configuration and use ``use_kernel_dispatcher: true``
+instead. This will call the kernel directly instead of executing a real
+HTTP request. Note that your kernel and bootstrapping need to be adjusted
+to support this feature. The setup is explained in the
+:ref:`Symfony HttpCache chapter <symfony_http_cache_kernel_dispatcher>`.
 
 ``tags_method``
 """""""""""""""
