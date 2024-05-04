@@ -17,11 +17,9 @@ use Symfony\Component\Security\Http\Event\LogoutEvent;
 
 final class ContextInvalidationSessionLogoutHandler implements EventSubscriberInterface
 {
-    private UserContextInvalidator $invalidator;
-
-    public function __construct(UserContextInvalidator $invalidator)
-    {
-        $this->invalidator = $invalidator;
+    public function __construct(
+        private readonly UserContextInvalidator $invalidator
+    ) {
     }
 
     public function onLogout(LogoutEvent $event): void

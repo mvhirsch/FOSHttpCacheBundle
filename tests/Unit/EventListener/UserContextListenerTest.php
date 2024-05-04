@@ -15,6 +15,7 @@ use FOS\HttpCache\ResponseTagger;
 use FOS\HttpCache\UserContext\HashGenerator;
 use FOS\HttpCacheBundle\EventListener\UserContextListener;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestMatcherInterface;
@@ -28,7 +29,7 @@ class UserContextListenerTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    public function testMisconfiguration()
+    public function testMisconfiguration(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -43,7 +44,7 @@ class UserContextListenerTest extends TestCase
         );
     }
 
-    public function testOnKernelRequest()
+    public function testOnKernelRequest(): void
     {
         $request = new Request();
         $request->setMethod('HEAD');
@@ -77,7 +78,7 @@ class UserContextListenerTest extends TestCase
         $this->assertEquals('max-age=0, no-cache, private', $response->headers->get('Cache-Control'));
     }
 
-    public function testOnKernelRequestNonMaster()
+    public function testOnKernelRequestNonMaster(): void
     {
         $request = new Request();
         $request->setMethod('HEAD');
@@ -105,7 +106,7 @@ class UserContextListenerTest extends TestCase
         $this->assertNull($event->getResponse());
     }
 
-    public function testOnKernelRequestCached()
+    public function testOnKernelRequestCached(): void
     {
         $request = new Request();
         $request->setMethod('HEAD');
@@ -140,7 +141,7 @@ class UserContextListenerTest extends TestCase
         $this->assertEquals('max-age=30, public', $response->headers->get('Cache-Control'));
     }
 
-    public function testOnKernelRequestNotMatched()
+    public function testOnKernelRequestNotMatched(): void
     {
         $request = new Request();
         $request->setMethod('HEAD');
@@ -170,7 +171,7 @@ class UserContextListenerTest extends TestCase
         $this->assertNull($response);
     }
 
-    public function testOnKernelRequestNotMatchedHasHeader()
+    public function testOnKernelRequestNotMatchedHasHeader(): void
     {
         $request = new Request();
         $request->setMethod('HEAD');
@@ -205,7 +206,7 @@ class UserContextListenerTest extends TestCase
         $this->assertNull($response);
     }
 
-    public function testOnKernelResponse()
+    public function testOnKernelResponse(): void
     {
         $request = new Request();
         $request->setMethod('HEAD');
@@ -235,7 +236,7 @@ class UserContextListenerTest extends TestCase
         $this->assertStringContainsString('X-Hash', $event->getResponse()->headers->get('Vary'));
     }
 
-    public function testOnKernelResponseSetsNoAutoCacheHeader()
+    public function testOnKernelResponseSetsNoAutoCacheHeader(): void
     {
         $request = new Request();
         $request->setMethod('HEAD');
@@ -256,7 +257,7 @@ class UserContextListenerTest extends TestCase
         $this->assertEquals(1, $event->getResponse()->headers->get(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER));
     }
 
-    public function testOnKernelResponseDoesNotSetNoAutoCacheHeaderWhenNoSessionListener()
+    public function testOnKernelResponseDoesNotSetNoAutoCacheHeaderWhenNoSessionListener(): void
     {
         $request = new Request();
         $request->setMethod('HEAD');
@@ -281,7 +282,7 @@ class UserContextListenerTest extends TestCase
         $this->assertFalse($event->getResponse()->headers->has(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER));
     }
 
-    public function testOnKernelResponseSetsNoAutoCacheHeaderWhenCustomHeader()
+    public function testOnKernelResponseSetsNoAutoCacheHeaderWhenCustomHeader(): void
     {
         $request = new Request();
         $request->setMethod('HEAD');
@@ -301,7 +302,7 @@ class UserContextListenerTest extends TestCase
         $this->assertEquals(1, $event->getResponse()->headers->get(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER));
     }
 
-    public function testOnKernelResponseSetsNoAutoCacheHeaderWhenCustomHeaderAndNoAddVaryOnHash()
+    public function testOnKernelResponseSetsNoAutoCacheHeaderWhenCustomHeaderAndNoAddVaryOnHash(): void
     {
         $request = new Request();
         $request->setMethod('HEAD');
@@ -326,7 +327,7 @@ class UserContextListenerTest extends TestCase
         $this->assertEquals(1, $event->getResponse()->headers->get(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER));
     }
 
-    public function testOnKernelResponseDoesNotSetNoAutoCacheHeaderWhenNoCustomHeaderAndNoAddVaryOnHash()
+    public function testOnKernelResponseDoesNotSetNoAutoCacheHeaderWhenNoCustomHeaderAndNoAddVaryOnHash(): void
     {
         $request = new Request();
         $request->setMethod('HEAD');
@@ -351,7 +352,7 @@ class UserContextListenerTest extends TestCase
         $this->assertFalse($event->getResponse()->headers->has(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER));
     }
 
-    public function testOnKernelResponseNotMaster()
+    public function testOnKernelResponseNotMaster(): void
     {
         $request = new Request();
         $request->setMethod('HEAD');
@@ -381,7 +382,7 @@ class UserContextListenerTest extends TestCase
     /**
      * If there is no hash in the request, vary on the user identifier.
      */
-    public function testOnKernelResponseNotCached()
+    public function testOnKernelResponseNotCached(): void
     {
         $request = new Request();
         $request->setMethod('HEAD');
@@ -410,7 +411,7 @@ class UserContextListenerTest extends TestCase
     /**
      * If there is no hash in the request, vary on the user identifier.
      */
-    public function testFullRequestHashOk()
+    public function testFullRequestHashOk(): void
     {
         $request = new Request();
         $request->setMethod('GET');
@@ -451,7 +452,7 @@ class UserContextListenerTest extends TestCase
     /**
      * If the request is an anonymous one, no hash should be generated/validated.
      */
-    public function testFullAnonymousRequestHashNotGenerated()
+    public function testFullAnonymousRequestHashNotGenerated(): void
     {
         $request = new Request();
         $request->setMethod('GET');
@@ -495,7 +496,7 @@ class UserContextListenerTest extends TestCase
     /**
      * If there is no hash in the requests but session changed, prevent setting bad cache.
      */
-    public function testFullRequestHashChanged()
+    public function testFullRequestHashChanged(): void
     {
         $request = new Request();
         $request->setMethod('GET');
@@ -553,12 +554,7 @@ class UserContextListenerTest extends TestCase
         );
     }
 
-    /**
-     * @param bool $match
-     *
-     * @return \Mockery\MockInterface|RequestMatcherInterface
-     */
-    private function getRequestMatcher(Request $request, $match)
+    private function getRequestMatcher(Request $request, bool $match): MockInterface&RequestMatcherInterface
     {
         $requestMatcher = \Mockery::mock(RequestMatcherInterface::class);
         $requestMatcher->shouldReceive('matches')->with($request)->andReturn($match);

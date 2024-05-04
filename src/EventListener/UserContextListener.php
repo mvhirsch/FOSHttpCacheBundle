@@ -36,45 +36,30 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 final class UserContextListener implements EventSubscriberInterface
 {
-    private RequestMatcherInterface $requestMatcher;
-    private HashGenerator $hashGenerator;
-
-    /**
-     * If the response tagger is set, the hash lookup response is tagged with the session id for later invalidation.
-     */
-    private ?ResponseTagger $responseTagger;
-
     private array $options;
-
-    /**
-     * Whether the application has a session listener and therefore could
-     * require the AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER.
-     */
-    private bool $hasSessionListener;
 
     private bool $wasAnonymous = false;
 
-    /**
-     * Used to exclude anonymous requests (no authentication nor session) from user hash sanity check.
-     * It prevents issues when the hash generator that is used returns a customized value for anonymous users,
-     * that differs from the documented, hardcoded one.
-     */
-    private ?RequestMatcherInterface $anonymousRequestMatcher;
-
     public function __construct(
-        RequestMatcherInterface $requestMatcher,
-        HashGenerator $hashGenerator,
-        ?RequestMatcherInterface $anonymousRequestMatcher = null,
-        ?ResponseTagger $responseTagger = null,
+        private readonly RequestMatcherInterface $requestMatcher,
+        private readonly HashGenerator $hashGenerator,
+        /**
+         * Used to exclude anonymous requests (no authentication nor session) from user hash sanity check.
+         * It prevents issues when the hash generator that is used returns a customized value for anonymous users,
+         * that differs from the documented, hardcoded one.
+         */
+        private readonly ?RequestMatcherInterface $anonymousRequestMatcher = null,
+        /**
+         * If the response tagger is set, the hash lookup response is tagged with the session id for later invalidation.
+         */
+        private readonly ?ResponseTagger $responseTagger = null,
         array $options = [],
-        bool $hasSessionListener = true
+        /**
+         * Whether the application has a session listener and therefore could
+         * require the AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER.
+         */
+        private readonly bool $hasSessionListener = true
     ) {
-        $this->requestMatcher = $requestMatcher;
-        $this->hashGenerator = $hashGenerator;
-        $this->anonymousRequestMatcher = $anonymousRequestMatcher;
-        $this->responseTagger = $responseTagger;
-        $this->hasSessionListener = $hasSessionListener;
-
         $resolver = new OptionsResolver();
         $resolver->setDefaults([
             'user_identifier_headers' => ['Cookie', 'Authorization'],

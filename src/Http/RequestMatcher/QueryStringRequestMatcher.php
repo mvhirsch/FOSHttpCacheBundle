@@ -19,14 +19,12 @@ use Symfony\Component\HttpFoundation\RequestMatcherInterface;
  */
 final class QueryStringRequestMatcher implements RequestMatcherInterface
 {
-    /**
-     * @var string Regular expression to match the query string part of the request url
-     */
-    private string $queryString;
-
-    public function __construct(string $queryString)
-    {
-        $this->queryString = $queryString;
+    public function __construct(
+        /**
+         * @var string Regular expression to match the query string part of the request url
+         */
+        private readonly string $queryString
+    ) {
     }
 
     public function matches(Request $request): bool

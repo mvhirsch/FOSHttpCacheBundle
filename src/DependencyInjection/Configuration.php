@@ -11,6 +11,7 @@
 
 namespace FOS\HttpCacheBundle\DependencyInjection;
 
+use DateTime;
 use FOS\HttpCache\ProxyClient\Varnish;
 use FOS\HttpCache\SymfonyCache\PurgeListener;
 use FOS\HttpCache\SymfonyCache\PurgeTagsListener;
@@ -35,17 +36,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 final class Configuration implements ConfigurationInterface
 {
-    /**
-     * @var bool
-     */
-    private $debug;
-
-    /**
-     * @param bool $debug Whether to use the debug mode
-     */
-    public function __construct($debug)
-    {
-        $this->debug = $debug;
+    public function __construct(
+        private readonly bool $debug
+    ) {
     }
 
     public function getConfigTreeBuilder(): TreeBuilder
@@ -113,7 +106,7 @@ final class Configuration implements ConfigurationInterface
                     }
 
                     if (isset($v['proxy_client']['default'])
-                        && in_array($v['proxy_client']['default'], ['varnish', 'symfony', 'noop'])
+                        && \in_array($v['proxy_client']['default'], ['varnish', 'symfony', 'noop'])
                     ) {
                         $v['user_context']['logout_handler']['enabled'] = true;
 
@@ -325,7 +318,7 @@ final class Configuration implements ConfigurationInterface
                     ->scalarNode('last_modified')
                         ->validate()
                             ->ifTrue(function ($v) {
-                                if (is_string($v)) {
+                                if (\is_string($v)) {
                                     new \DateTime($v);
                                 }
 

@@ -18,7 +18,7 @@ class CacheControlListenerTest extends WebTestCase
 {
     use MockeryPHPUnitIntegration;
 
-    public function testIsCached()
+    public function testIsCached(): void
     {
         $client = static::createClient();
 
@@ -27,7 +27,7 @@ class CacheControlListenerTest extends WebTestCase
         $this->assertEquals('public', $response->headers->get('Cache-Control'), $response->getContent());
     }
 
-    public function testNotCached()
+    public function testNotCached(): void
     {
         $client = static::createClient();
 

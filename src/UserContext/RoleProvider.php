@@ -30,7 +30,7 @@ final class RoleProvider implements ContextProvider
      * a firewall context.
      */
     public function __construct(
-        private ?TokenStorageInterface $tokenStorage = null
+        private readonly ?TokenStorageInterface $tokenStorage = null
     ) {
     }
 

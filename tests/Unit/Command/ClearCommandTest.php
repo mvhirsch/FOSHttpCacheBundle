@@ -23,7 +23,7 @@ class ClearCommandTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    public function testExecuteClear()
+    public function testExecuteClear(): void
     {
         $invalidator = \Mockery::mock(CacheManager::class)
             ->shouldReceive('supports')->once()->with(CacheInvalidator::CLEAR)->andReturnTrue()
@@ -44,7 +44,7 @@ class ClearCommandTest extends TestCase
         $this->assertEquals('', $commandTester->getDisplay());
     }
 
-    public function testExecuteInvalidate()
+    public function testExecuteInvalidate(): void
     {
         $invalidator = \Mockery::mock(CacheManager::class)
             ->shouldReceive('supports')->once()->with(CacheInvalidator::CLEAR)->andReturnFalse()
@@ -66,7 +66,7 @@ class ClearCommandTest extends TestCase
         $this->assertEquals('', $commandTester->getDisplay());
     }
 
-    public function testExecuteNotSupported()
+    public function testExecuteNotSupported(): void
     {
         $invalidator = \Mockery::mock(CacheManager::class)
             ->shouldReceive('supports')->once()->with(CacheInvalidator::CLEAR)->andReturnFalse()

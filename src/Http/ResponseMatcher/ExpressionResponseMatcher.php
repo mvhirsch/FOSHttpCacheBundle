@@ -16,18 +16,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class ExpressionResponseMatcher implements ResponseMatcherInterface
 {
-    private ?ExpressionLanguage $expressionLanguage;
-    private string $expression;
-
-    public function __construct(string $expression, ?ExpressionLanguage $expressionLanguage = null)
-    {
-        $this->expression = $expression;
-        $this->expressionLanguage = $expressionLanguage;
+    public function __construct(
+        private readonly string $expression,
+        private ?ExpressionLanguage $expressionLanguage = null
+    ) {
     }
 
-    public function matches(Response $response)
+    public function matches(Response $response): bool
     {
-        return $this->getExpressionLanguage()->evaluate(
+        return (bool) $this->getExpressionLanguage()->evaluate(
             $this->expression,
             ['response' => $response]
         );

@@ -12,10 +12,8 @@ class ServersFromEnvTest extends KernelTestCase
 {
     /**
      * Boots a special kernel with a compiler pass to make all services public for this test.
-     *
-     * @return KernelInterface A KernelInterface instance
      */
-    protected function bootDebugKernel()
+    protected function bootDebugKernel(): KernelInterface
     {
         static::ensureKernelShutdown();
         static::$kernel = static::createKernel();
@@ -28,7 +26,7 @@ class ServersFromEnvTest extends KernelTestCase
         return static::$kernel;
     }
 
-    public function testServersFromEnv()
+    public function testServersFromEnv(): void
     {
         // define the kernel config to use for this test
         $_ENV['KERNEL_CONFIG'] = 'config_servers_from_env.yml';
@@ -44,7 +42,6 @@ class ServersFromEnvTest extends KernelTestCase
 
         $reflectionObject = new \ReflectionClass($fosHttpCache);
         $reflectionGetServers = $reflectionObject->getMethod('getServers');
-        $reflectionGetServers->setAccessible(true);
         $uris = $reflectionGetServers->invoke($fosHttpCache);
         $servers = array_map(function ($uri) { return $uri->__toString(); }, $uris);
 

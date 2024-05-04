@@ -17,6 +17,7 @@ use FOS\HttpCache\ProxyClient\Invalidation\RefreshCapable;
 use FOS\HttpCache\ProxyClient\ProxyClient;
 use FOS\HttpCacheBundle\CacheManager;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\VarExporter\LazyObjectInterface;
@@ -25,14 +26,14 @@ class CacheManagerTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    protected $proxyClient;
+    protected MockInterface&ProxyClient $proxyClient;
 
     public function setUp(): void
     {
         $this->proxyClient = \Mockery::mock(ProxyClient::class);
     }
 
-    public function testInvalidateRoute()
+    public function testInvalidateRoute(): void
     {
         $httpCache = \Mockery::mock(PurgeCapable::class)
             ->shouldReceive('purge')->once()->with('/my/route', [])
@@ -59,7 +60,7 @@ class CacheManagerTest extends TestCase
             ->flush();
     }
 
-    public function testRefreshRoute()
+    public function testRefreshRoute(): void
     {
         $httpCache = \Mockery::mock(RefreshCapable::class)
             ->shouldReceive('refresh')->once()->with('/my/route', null)
@@ -87,7 +88,7 @@ class CacheManagerTest extends TestCase
         ;
     }
 
-    public function testSkipFlushOnEmptyInvalidationsAndLazyLoaded()
+    public function testSkipFlushOnEmptyInvalidationsAndLazyLoaded(): void
     {
         $proxyClient = \Mockery::mock(HttpProxyClient::class, LazyObjectInterface::class)
             ->shouldNotReceive('flush')
@@ -100,7 +101,7 @@ class CacheManagerTest extends TestCase
         $this->assertEquals(0, $cacheInvalidator->flush());
     }
 
-    public function testFlushOnNotLazyLoaded()
+    public function testFlushOnNotLazyLoaded(): void
     {
         $proxyClient = \Mockery::mock(HttpProxyClient::class)
             ->shouldReceive('flush')->andReturn(0)
@@ -113,7 +114,7 @@ class CacheManagerTest extends TestCase
         $this->assertEquals(0, $cacheInvalidator->flush());
     }
 
-    public function testFlushOnLazyLoaded()
+    public function testFlushOnLazyLoaded(): void
     {
         $proxyClient = \Mockery::mock(HttpProxyClient::class, LazyObjectInterface::class, PurgeCapable::class);
         $proxyClient->shouldReceive('flush')->andReturn(1);

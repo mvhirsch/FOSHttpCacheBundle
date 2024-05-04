@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FlashMessageController extends AbstractController
 {
-    public function flashAction()
+    public function flashAction(): Response
     {
         $this->addFlash(
             'notice',
@@ -27,7 +27,7 @@ class FlashMessageController extends AbstractController
         return new Response('flash');
     }
 
-    public function flashRedirectAction()
+    public function flashRedirectAction(): RedirectResponse
     {
         $this->addFlash(
             'notice',

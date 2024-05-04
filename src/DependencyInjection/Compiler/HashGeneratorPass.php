@@ -46,7 +46,7 @@ final class HashGeneratorPass implements CompilerPassInterface
         }
 
         krsort($prioritisedTags, SORT_NUMERIC);
-        $prioritisedProviders = call_user_func_array('array_merge', $prioritisedTags);
+        $prioritisedProviders = array_merge(...$prioritisedTags);
 
         $providers = [];
         foreach ($prioritisedProviders as $id) {

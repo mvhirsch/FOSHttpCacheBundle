@@ -24,26 +24,16 @@ use Symfony\Component\VarExporter\LazyObjectInterface;
  */
 class CacheManager extends CacheInvalidator
 {
-    private ProxyClient $cache;
-
-    private UrlGeneratorInterface $urlGenerator;
-
     /**
      * What type of urls to generate.
      */
     private int $generateUrlType = UrlGeneratorInterface::ABSOLUTE_PATH;
 
-    /**
-     * Constructor.
-     *
-     * @param ProxyClient           $cache        HTTP cache proxy client
-     * @param UrlGeneratorInterface $urlGenerator Symfony route generator
-     */
-    public function __construct(ProxyClient $cache, UrlGeneratorInterface $urlGenerator)
-    {
+    public function __construct(
+        private readonly ProxyClient $cache,
+        private readonly UrlGeneratorInterface $urlGenerator
+    ) {
         parent::__construct($cache);
-        $this->cache = $cache;
-        $this->urlGenerator = $urlGenerator;
     }
 
     /**

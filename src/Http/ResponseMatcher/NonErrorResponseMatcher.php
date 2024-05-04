@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 final class NonErrorResponseMatcher implements ResponseMatcherInterface
 {
-    public function matches(Response $response)
+    public function matches(Response $response): bool
     {
         return $response->getStatusCode() >= 200
             && $response->getStatusCode() < 400;

@@ -18,11 +18,9 @@ use Symfony\Component\Security\Http\SecurityEvents;
 
 final class SwitchUserListener implements EventSubscriberInterface
 {
-    private UserContextInvalidator $invalidator;
-
-    public function __construct(UserContextInvalidator $invalidator)
-    {
-        $this->invalidator = $invalidator;
+    public function __construct(
+        private readonly UserContextInvalidator $invalidator
+    ) {
     }
 
     public static function getSubscribedEvents(): array

@@ -10,9 +10,9 @@ Changelog
   Remove all configuration you have at `fos_http_cache.tags.annotations`
 * Make `fastly` and `cloudflare` clients lazy loaded to support Symfony secrets that are only available at runtime, but
   not yet when the container is built.
-* Removed deprecated `FOS\HttpCacheBundle\UserContext\AnonymousRequestMatcher`, use the 
-  `FOS\HttpCache\UserContext\AnonymousRequestMatcher` class.
-* Removed deprecated `ContextInvalidationLogoutHandler`, use `ContextInvalidationSessionLogoutHandler` instead.
+* Removed deprecated `FOS\HttpCacheBundle\UserContext\AnonymousRequestMatcher`, use the class from the `FOSHttpCache`
+  component instead: `FOS\HttpCache\UserContext\AnonymousRequestMatcher`.
+* Removed obsolete `ContextInvalidationLogoutHandler`, use `ContextInvalidationSessionLogoutHandler` instead.
 * Fixed service loading to not fail when Twig is not available.
 
 2.x

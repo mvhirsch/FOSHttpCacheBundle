@@ -20,7 +20,7 @@ class RequestMatcherTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    public function testMatch()
+    public function testMatch(): void
     {
         $requestMatcher = new RequestMatcher('application/vnd.test', 'HEAD');
 
@@ -39,7 +39,7 @@ class RequestMatcherTest extends TestCase
         $this->assertTrue($requestMatcher->matches($request));
     }
 
-    public function testNoMatch()
+    public function testNoMatch(): void
     {
         $requestMatcher = new RequestMatcher('application/vnd.test', 'HEAD');
 

@@ -18,7 +18,7 @@ class FlashMessageListenerTest extends WebTestCase
 {
     use MockeryPHPUnitIntegration;
 
-    public function testFlashMessageCookieIsSet()
+    public function testFlashMessageCookieIsSet(): void
     {
         $client = static::createClient();
 
@@ -37,14 +37,14 @@ class FlashMessageListenerTest extends WebTestCase
             $this->assertEquals('/', $cookie->getPath());
             $this->assertNull($cookie->getDomain());
             $this->assertTrue($cookie->isSecure());
-            $this->assertJsonStringEqualsJsonString(json_encode(['notice' => ['Flash Message!']]), $cookie->getValue());
+            $this->assertJsonStringEqualsJsonString(json_encode(['notice' => ['Flash Message!']], JSON_THROW_ON_ERROR), $cookie->getValue());
             $found = true;
         }
 
         $this->assertTrue($found, 'Cookie "flash_cookie_name" not found in response cookies');
     }
 
-    public function testFlashMessageCookieIsSetOnRedirect()
+    public function testFlashMessageCookieIsSetOnRedirect(): void
     {
         $client = static::createClient();
         $client->followRedirects(true);
@@ -64,7 +64,7 @@ class FlashMessageListenerTest extends WebTestCase
             $this->assertEquals('/', $cookie->getPath());
             $this->assertNull($cookie->getDomain());
             $this->assertTrue($cookie->isSecure());
-            $this->assertJsonStringEqualsJsonString(json_encode(['notice' => ['Flash Message!', 'Flash Message!']]), $cookie->getValue());
+            $this->assertJsonStringEqualsJsonString(json_encode(['notice' => ['Flash Message!', 'Flash Message!']], JSON_THROW_ON_ERROR), $cookie->getValue());
             $found = true;
         }
 

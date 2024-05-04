@@ -20,14 +20,9 @@ use Twig\TwigFunction;
  */
 class CacheTagExtension extends AbstractExtension
 {
-    /**
-     * @var ResponseTagger
-     */
-    private $responseTagger;
-
-    public function __construct(ResponseTagger $responseTagger)
-    {
-        $this->responseTagger = $responseTagger;
+    public function __construct(
+        private readonly ResponseTagger $responseTagger
+    ) {
     }
 
     public function getFunctions(): array
@@ -47,7 +42,7 @@ class CacheTagExtension extends AbstractExtension
      *
      * @param string|string[] $tag
      */
-    public function addTag($tag): void
+    public function addTag(string|array $tag): void
     {
         $this->responseTagger->addTags((array) $tag);
     }

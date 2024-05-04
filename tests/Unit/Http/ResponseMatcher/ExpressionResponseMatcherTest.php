@@ -21,7 +21,7 @@ class ExpressionResponseMatcherTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    public function testExpressionMatch()
+    public function testExpressionMatch(): void
     {
         $matcher = new ExpressionResponseMatcher('response.getStatusCode() === 200');
 
@@ -32,7 +32,7 @@ class ExpressionResponseMatcherTest extends TestCase
         $this->assertFalse($matcher->matches($response));
     }
 
-    public function testCustomExpressionLanguage()
+    public function testCustomExpressionLanguage(): void
     {
         $response = new Response('', 500);
         $el = \Mockery::mock(ExpressionLanguage::class)

@@ -25,7 +25,7 @@ class CacheControlListenerTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    public function testDefaultHeaders()
+    public function testDefaultHeaders(): void
     {
         $event = $this->buildEvent();
         $headers = [
@@ -48,7 +48,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertEquals(strtotime('13.07.2003'), strtotime($newHeaders['last-modified'][0]));
     }
 
-    public function testEtagStrong()
+    public function testEtagStrong(): void
     {
         $event = $this->buildEvent();
         $headers = [
@@ -63,7 +63,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertEquals('"d41d8cd98f00b204e9800998ecf8427e"', $newHeaders['etag'][0]);
     }
 
-    public function testEtagWeak()
+    public function testEtagWeak(): void
     {
         $event = $this->buildEvent();
         $headers = [
@@ -78,7 +78,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertEquals('W/"d41d8cd98f00b204e9800998ecf8427e"', $newHeaders['etag'][0]);
     }
 
-    public function testExtraHeaders()
+    public function testExtraHeaders(): void
     {
         $event = $this->buildEvent();
         $headers = [
@@ -99,7 +99,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertEquals('must-revalidate, no-transform, proxy-revalidate, stale-if-error=300, stale-while-revalidate=400, private', $newHeaders['cache-control'][0]);
     }
 
-    public function testCompoundHeaders()
+    public function testCompoundHeaders(): void
     {
         $event = $this->buildEvent();
         $headers = [
@@ -124,7 +124,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertEquals('max-age=900, must-revalidate, no-transform, proxy-revalidate, public, s-maxage=300, stale-if-error=300, stale-while-revalidate=400', $newHeaders['cache-control'][0]);
     }
 
-    public function testSetNoCacheHeaders()
+    public function testSetNoCacheHeaders(): void
     {
         $event = $this->buildEvent();
         $headers = [
@@ -147,7 +147,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertEquals('max-age=0, must-revalidate, no-cache, no-store, private, s-maxage=0', $newHeaders['cache-control'][0]);
     }
 
-    public function testMergeHeaders()
+    public function testMergeHeaders(): void
     {
         $event = $this->buildEvent();
         $headers = [
@@ -187,7 +187,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertEquals('Mon, 09 Sep 2013 00:00:00 GMT', $newHeaders['last-modified'][0]);
     }
 
-    public function testOverwriteHeaders()
+    public function testOverwriteHeaders(): void
     {
         $event = $this->buildEvent();
         $headers = [
@@ -227,7 +227,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertEquals('Fri, 10 Oct 2014 00:00:00 GMT', $newHeaders['last-modified'][0]);
     }
 
-    public function testMergePublicPrivate()
+    public function testMergePublicPrivate(): void
     {
         $event = $this->buildEvent();
         $headers = [
@@ -249,7 +249,7 @@ class CacheControlListenerTest extends TestCase
     /**
      * The no_cache header is never actually called as its already set.
      */
-    public function testSetOnlyNoCacheHeader()
+    public function testSetOnlyNoCacheHeader(): void
     {
         $event = $this->buildEvent();
         $headers = [
@@ -266,7 +266,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertStringContainsString('no-cache', $newHeaders['cache-control'][0]);
     }
 
-    public function testSetOnlyNoStoreHeader()
+    public function testSetOnlyNoStoreHeader(): void
     {
         $event = $this->buildEvent();
         $headers = [
@@ -283,7 +283,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertStringContainsString('no-store', $newHeaders['cache-control'][0]);
     }
 
-    public function testSkip()
+    public function testSkip(): void
     {
         $event = $this->buildEvent();
         $listener = new CacheControlListener();
@@ -299,7 +299,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertStringContainsString('no-cache', $newHeaders['cache-control'][0]);
     }
 
-    public function testVary()
+    public function testVary(): void
     {
         $event = $this->buildEvent();
         $headers = [
@@ -319,7 +319,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertEquals($headers['vary'], $newHeaders['vary']);
     }
 
-    public function testReverseProxyTtl()
+    public function testReverseProxyTtl(): void
     {
         $event = $this->buildEvent();
         $headers = [
@@ -334,7 +334,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertEquals(600, $newHeaders['x-reverse-proxy-ttl'][0]);
     }
 
-    public function testDebugHeader()
+    public function testDebugHeader(): void
     {
         $listener = new CacheControlListener('X-Cache-Debug');
         $matcher = \Mockery::mock(RuleMatcherInterface::class)
@@ -350,7 +350,7 @@ class CacheControlListenerTest extends TestCase
         $this->assertTrue(isset($newHeaders['x-cache-debug'][0]));
     }
 
-    public function testMatchRule()
+    public function testMatchRule(): void
     {
         $event = $this->buildEvent();
         $request = $event->getRequest();
@@ -393,7 +393,7 @@ class CacheControlListenerTest extends TestCase
     /**
      * Unsafe methods should abort before even attempting to match rules.
      */
-    public function testUnsafeMethod()
+    public function testUnsafeMethod(): void
     {
         $listener = new CacheControlListener();
         $matcher = \Mockery::mock(RuleMatcherInterface::class)

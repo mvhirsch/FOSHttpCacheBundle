@@ -26,10 +26,9 @@ class SwitchUserListenerTest extends WebTestCase
     use SessionHelperTrait;
 
     private const FIREWALL_NAME = 'secured_area';
-    private $sessionName;
-    private static $overrideService = false;
+    private static bool $overrideService = false;
 
-    public function testSwitchUserCompatibility()
+    public function testSwitchUserCompatibility(): void
     {
         $client = static::createClient();
         $this->loginAsAdmin($client);
@@ -46,7 +45,7 @@ class SwitchUserListenerTest extends WebTestCase
         $this->assertSame('admin', substr($client->getResponse()->getContent(), 0, 2000));
     }
 
-    public function testInvalidateContext()
+    public function testInvalidateContext(): void
     {
         self::$overrideService = true;
 
@@ -68,7 +67,7 @@ class SwitchUserListenerTest extends WebTestCase
         $client->request('GET', '/secured_area/switch_user?_switch_user=user');
     }
 
-    public function loginAsAdmin(KernelBrowser $client)
+    public function loginAsAdmin(KernelBrowser $client): void
     {
         $client->loginUser($this->createAdminUser(), self::FIREWALL_NAME);
     }

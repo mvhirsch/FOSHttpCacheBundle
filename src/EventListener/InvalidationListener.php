@@ -35,24 +35,12 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 final class InvalidationListener extends AbstractRuleListener implements EventSubscriberInterface
 {
-    private CacheManager $cacheManager;
-    private UrlGeneratorInterface $urlGenerator;
-    private ?ExpressionLanguage $expressionLanguage;
-    private RuleMatcherInterface $mustInvalidateRule;
-
-    /**
-     * Constructor.
-     */
     public function __construct(
-        CacheManager $cacheManager,
-        UrlGeneratorInterface $urlGenerator,
-        RuleMatcherInterface $mustInvalidateRule,
-        ?ExpressionLanguage $expressionLanguage = null
+        private readonly CacheManager $cacheManager,
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly RuleMatcherInterface $mustInvalidateRule,
+        private ?ExpressionLanguage $expressionLanguage = null
     ) {
-        $this->cacheManager = $cacheManager;
-        $this->urlGenerator = $urlGenerator;
-        $this->mustInvalidateRule = $mustInvalidateRule;
-        $this->expressionLanguage = $expressionLanguage;
     }
 
     /**
@@ -76,7 +64,7 @@ final class InvalidationListener extends AbstractRuleListener implements EventSu
 
         try {
             $this->cacheManager->flush();
-        } catch (ExceptionCollection $e) {
+        } catch (ExceptionCollection) {
             // swallow exception
             // there is the fos_http_cache.event_listener.log to log them
         }
@@ -89,7 +77,7 @@ final class InvalidationListener extends AbstractRuleListener implements EventSu
     {
         try {
             $this->cacheManager->flush();
-        } catch (ExceptionCollection $e) {
+        } catch (ExceptionCollection) {
             // swallow exception
             // there is the fos_http_cache.event_listener.log to log them
         }

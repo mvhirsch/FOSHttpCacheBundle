@@ -22,7 +22,7 @@ class InvalidateRegexCommandTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    public function testExecuteNoParameters()
+    public function testExecuteNoParameters(): void
     {
         $this->expectException(\RuntimeException::class);
 
@@ -36,7 +36,7 @@ class InvalidateRegexCommandTest extends TestCase
         $commandTester->execute(['command' => $command->getName()]);
     }
 
-    public function testExecuteParameter()
+    public function testExecuteParameter(): void
     {
         $invalidator = \Mockery::mock(CacheManager::class)
             ->shouldReceive('invalidateRegex')->once()->with('/my.*/path')

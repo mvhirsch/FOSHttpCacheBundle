@@ -48,20 +48,15 @@ final class CacheControlListener implements EventSubscriberInterface
      */
     private array $rulesMap = [];
 
-    /**
-     * If not empty, add a debug header with that name to all responses,
-     * telling the cache proxy to add debug output.
-     *
-     * @var string|false Name of the header or false to add no header
-     */
-    private string|false $debugHeader;
-
-    /**
-     * @param string|false $debugHeader Header to set to trigger debugging, or false to send no header
-     */
-    public function __construct(string|false $debugHeader = false)
-    {
-        $this->debugHeader = $debugHeader;
+    public function __construct(
+        /**
+         * If not empty, add a debug header with that name to all responses,
+         * telling the cache proxy to add debug output.
+         *
+         * @var string|false Name of the header or false to add no header
+         */
+        private readonly string|false $debugHeader = false
+    ) {
     }
 
     public static function getSubscribedEvents(): array

@@ -25,7 +25,7 @@ class SymfonyResponseTagger extends ResponseTagger
      *
      * @return $this
      */
-    public function tagSymfonyResponse(Response $response, $replace = false)
+    public function tagSymfonyResponse(Response $response, bool $replace = false): static
     {
         if (!$this->hasTags()) {
             return $this;

@@ -21,9 +21,9 @@ class AppKernel extends Kernel
     /**
      * @var CompilerPassInterface[]
      */
-    private $compilerPasses = [];
+    private array $compilerPasses = [];
 
-    private $serviceOverride = [];
+    private array $serviceOverride = [];
 
     public function addServiceOverride(string $config): void
     {

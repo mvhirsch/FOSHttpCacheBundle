@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SymfonyResponseTaggerTest extends TestCase
 {
-    public function testTagResponse()
+    public function testTagResponse(): void
     {
         $tags1 = ['post-1', 'posts'];
         $tags2 = ['post-2'];

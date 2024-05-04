@@ -29,27 +29,13 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 final class TagListener extends AbstractRuleListener implements EventSubscriberInterface
 {
-    private CacheManager $cacheManager;
-    private SymfonyResponseTagger $symfonyResponseTagger;
-    private ?ExpressionLanguage $expressionLanguage;
-    private RuleMatcherInterface $mustInvalidateRule;
-    private RuleMatcherInterface $cacheableRule;
-
-    /**
-     * Constructor.
-     */
     public function __construct(
-        CacheManager $cacheManager,
-        SymfonyResponseTagger $tagHandler,
-        RuleMatcherInterface $cacheableRule,
-        RuleMatcherInterface $mustInvalidateRule,
-        ?ExpressionLanguage $expressionLanguage = null
+        private readonly CacheManager $cacheManager,
+        private readonly SymfonyResponseTagger $symfonyResponseTagger,
+        private readonly RuleMatcherInterface $cacheableRule,
+        private readonly RuleMatcherInterface $mustInvalidateRule,
+        private ?ExpressionLanguage $expressionLanguage = null
     ) {
-        $this->cacheManager = $cacheManager;
-        $this->symfonyResponseTagger = $tagHandler;
-        $this->cacheableRule = $cacheableRule;
-        $this->mustInvalidateRule = $mustInvalidateRule;
-        $this->expressionLanguage = $expressionLanguage;
     }
 
     /**
@@ -115,19 +101,19 @@ final class TagListener extends AbstractRuleListener implements EventSubscriberI
             return [];
         }
 
-        $tags = [];
+        $tagArrays = [];
         foreach ($tagConfigurations as $tagConfiguration) {
             if (null !== $tagConfiguration->getExpression()) {
-                $tags[] = $this->evaluateTag(
+                $tagArrays[] = [$this->evaluateTag(
                     $tagConfiguration->getExpression(),
                     $request
-                );
+                )];
             } else {
-                $tags = array_merge($tags, $tagConfiguration->getTags());
+                $tagArrays[] = $tagConfiguration->getTags();
             }
         }
 
-        return $tags;
+        return array_merge(...$tagArrays);
     }
 
     /**

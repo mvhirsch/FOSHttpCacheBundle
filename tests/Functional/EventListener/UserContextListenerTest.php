@@ -21,7 +21,7 @@ class UserContextListenerTest extends WebTestCase
     use SessionHelperTrait;
 
     #[PHPUnit\DataProvider('userHashDataProvider')]
-    public function testHashLookup(string $username, string $hash)
+    public function testHashLookup(string $username, string $hash): void
     {
         // as we tamper with the session id, make sure no previous session is around
         @unlink('/tmp/test.mocksess');

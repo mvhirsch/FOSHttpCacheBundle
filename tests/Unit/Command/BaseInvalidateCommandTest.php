@@ -25,7 +25,7 @@ class BaseInvalidateCommandTest extends TestCase
     /**
      * @group legacy
      */
-    public function testContainerAccess()
+    public function testContainerAccess(): void
     {
         $invalidator = \Mockery::mock(CacheManager::class)
             ->shouldReceive('invalidatePath')->once()->with('/my/path')

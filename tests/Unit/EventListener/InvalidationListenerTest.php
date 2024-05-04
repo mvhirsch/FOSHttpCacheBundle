@@ -34,25 +34,10 @@ class InvalidationListenerTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    /**
-     * @var CacheManager|MockInterface
-     */
-    private $cacheManager;
-
-    /**
-     * @var UrlGeneratorInterface|MockInterface
-     */
-    private $urlGenerator;
-
-    /**
-     * @var RuleMatcherInterface|MockInterface
-     */
-    private $mustInvalidateRule;
-
-    /**
-     * @var InvalidationListener
-     */
-    private $listener;
+    private CacheManager&MockInterface $cacheManager;
+    private UrlGeneratorInterface&MockInterface $urlGenerator;
+    private RuleMatcherInterface&MockInterface $mustInvalidateRule;
+    private InvalidationListener $listener;
 
     public function setUp(): void
     {
@@ -70,7 +55,7 @@ class InvalidationListenerTest extends TestCase
         );
     }
 
-    public function testNoRoutesInvalidatedWhenResponseIsUnsuccessful()
+    public function testNoRoutesInvalidatedWhenResponseIsUnsuccessful(): void
     {
         $this->cacheManager
             ->shouldReceive('invalidateRoute')->never()
@@ -83,7 +68,7 @@ class InvalidationListenerTest extends TestCase
         $this->listener->onKernelTerminate($event);
     }
 
-    public function testOnKernelTerminate()
+    public function testOnKernelTerminate(): void
     {
         $this->cacheManager
             ->shouldReceive('invalidatePath')->with('/retrieve/something/123')
@@ -125,14 +110,14 @@ class InvalidationListenerTest extends TestCase
         $this->listener->onKernelTerminate($event);
     }
 
-    public function testOnKernelException()
+    public function testOnKernelException(): void
     {
         $this->cacheManager->shouldReceive('flush')->once();
         $event = $this->getEvent(new Request());
         $this->listener->onKernelException($event);
     }
 
-    public function testInvalidatePath()
+    public function testInvalidatePath(): void
     {
         $request = Request::create('', 'PUT');
         $request->attributes->set('_invalidate_path', [
@@ -151,7 +136,7 @@ class InvalidationListenerTest extends TestCase
         $this->listener->onKernelTerminate($event);
     }
 
-    public function testInvalidateRoute()
+    public function testInvalidateRoute(): void
     {
         $request = Request::create('', 'POST');
         $request->attributes->set('request_id', 123);
@@ -170,7 +155,7 @@ class InvalidationListenerTest extends TestCase
         $this->listener->onKernelTerminate($event);
     }
 
-    public function testOnConsoleTerminate()
+    public function testOnConsoleTerminate(): void
     {
         $this->cacheManager->shouldReceive('flush')->once()->andReturn(2);
 
@@ -191,7 +176,7 @@ class InvalidationListenerTest extends TestCase
         return new TerminateEvent(
             \Mockery::mock(HttpKernelInterface::class),
             $request,
-            null !== $response ? $response : new Response()
+            $response ?? new Response()
         );
     }
 }

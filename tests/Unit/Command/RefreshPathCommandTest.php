@@ -22,7 +22,7 @@ class RefreshPathCommandTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    public function testExecuteMissingParameters()
+    public function testExecuteMissingParameters(): void
     {
         $this->expectException(\RuntimeException::class);
 
@@ -36,7 +36,7 @@ class RefreshPathCommandTest extends TestCase
         $commandTester->execute(['command' => $command->getName()]);
     }
 
-    public function testExecuteParameter()
+    public function testExecuteParameter(): void
     {
         $invalidator = \Mockery::mock(CacheManager::class)
             ->shouldReceive('refreshPath')->once()->with('/my/path')
