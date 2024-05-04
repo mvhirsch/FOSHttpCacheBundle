@@ -15,7 +15,7 @@ use FOS\HttpCacheBundle\CacheManager;
 
 class InvalidateTagCommandTest extends CommandTestCase
 {
-    public function testExecuteVerbose()
+    public function testExecuteVerbose(): void
     {
         $client = self::createClient();
 

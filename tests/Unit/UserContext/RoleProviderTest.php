@@ -23,7 +23,7 @@ class RoleProviderTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    public function testProvider()
+    public function testProvider(): void
     {
         $token = \Mockery::mock(TokenInterface::class);
         $token->shouldReceive('getRoleNames')->andReturn(['ROLE_USER']);
@@ -42,7 +42,7 @@ class RoleProviderTest extends TestCase
         ], $userContext->getParameters());
     }
 
-    public function testNotUnderFirewall()
+    public function testNotUnderFirewall(): void
     {
         $this->expectException(InvalidConfigurationException::class);
 

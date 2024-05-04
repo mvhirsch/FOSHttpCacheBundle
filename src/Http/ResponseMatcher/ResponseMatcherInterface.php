@@ -17,8 +17,6 @@ interface ResponseMatcherInterface
 {
     /**
      * Determines whether the response matches the rule.
-     *
-     * @return bool
      */
-    public function matches(Response $response);
+    public function matches(Response $response): bool;
 }

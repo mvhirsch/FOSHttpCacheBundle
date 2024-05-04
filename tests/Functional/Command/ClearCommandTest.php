@@ -16,7 +16,7 @@ use FOS\HttpCacheBundle\CacheManager;
 
 class ClearCommandTest extends CommandTestCase
 {
-    public function testExecuteClearVerbose()
+    public function testExecuteClearVerbose(): void
     {
         $client = self::createClient();
 
@@ -39,7 +39,7 @@ class ClearCommandTest extends CommandTestCase
         $this->assertEquals("Sent 1 invalidation request(s)\n", $output);
     }
 
-    public function testExecuteBanVerbose()
+    public function testExecuteBanVerbose(): void
     {
         $client = self::createClient();
 
@@ -66,7 +66,7 @@ class ClearCommandTest extends CommandTestCase
         $this->assertEquals("Sent 1 invalidation request(s)\n", $output);
     }
 
-    public function testExecuteErrorVerbose()
+    public function testExecuteErrorVerbose(): void
     {
         $client = self::createClient();
 

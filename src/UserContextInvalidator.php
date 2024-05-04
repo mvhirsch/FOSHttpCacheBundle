@@ -17,22 +17,15 @@ class UserContextInvalidator
 {
     public const USER_CONTEXT_TAG_PREFIX = 'fos_http_cache_hashlookup-';
 
-    /**
-     * @var TagCapable
-     */
-    private $tagger;
-
-    public function __construct(TagCapable $tagger)
-    {
-        $this->tagger = $tagger;
+    public function __construct(
+        private readonly TagCapable $tagger
+    ) {
     }
 
     /**
      * Invalidate the user context hash.
-     *
-     * @param string $sessionId
      */
-    public function invalidateContext($sessionId): void
+    public function invalidateContext(string $sessionId): void
     {
         $this->tagger->invalidateTags([static::buildTag($sessionId)]);
     }

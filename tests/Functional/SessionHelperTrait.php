@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 trait SessionHelperTrait
 {
-    private function callInRequestContext(KernelBrowser $client, callable $callable)
+    private function callInRequestContext(KernelBrowser $client, callable $callable): void
     {
         /** @var EventDispatcherInterface $eventDispatcher */
         $eventDispatcher = self::$kernel->getContainer()->get('test.service_container')->get(EventDispatcherInterface::class);

@@ -30,7 +30,7 @@ abstract class CommandTestCase extends WebTestCase
      *
      * @param int $exitCode Expected command exit code
      */
-    protected function runCommand(KernelBrowser $client, $command, $exitCode = 0): string
+    protected function runCommand(KernelBrowser $client, $command, int $exitCode = 0): string
     {
         $application = new Application($client->getKernel());
         $application->setAutoExit(false);

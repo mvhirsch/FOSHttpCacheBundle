@@ -23,10 +23,8 @@ class ServiceTest extends KernelTestCase
 {
     /**
      * Boots a special kernel with a compiler pass to make all services public for this test.
-     *
-     * @return KernelInterface A KernelInterface instance
      */
-    protected function bootDebugKernel()
+    protected function bootDebugKernel(): KernelInterface
     {
         static::ensureKernelShutdown();
 
@@ -40,7 +38,7 @@ class ServiceTest extends KernelTestCase
         return static::$kernel;
     }
 
-    public function testCanBeLoaded()
+    public function testCanBeLoaded(): void
     {
         /** @var Container $container */
         $container = $this->bootDebugKernel()->getContainer();

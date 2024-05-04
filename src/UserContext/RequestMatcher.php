@@ -16,14 +16,10 @@ use Symfony\Component\HttpFoundation\RequestMatcherInterface;
 
 final class RequestMatcher implements RequestMatcherInterface
 {
-    private ?string $method;
-
-    private ?string $accept;
-
-    public function __construct(?string $accept = 'application/vnd.fos.user-context-hash', ?string $method = null)
-    {
-        $this->accept = $accept;
-        $this->method = $method;
+    public function __construct(
+        private ?string $accept = 'application/vnd.fos.user-context-hash',
+        private ?string $method = null
+    ) {
     }
 
     public function matches(Request $request): bool

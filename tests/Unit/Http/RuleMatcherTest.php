@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RuleMatcherTest extends TestCase
 {
-    public function testRequestMatcherCalled()
+    public function testRequestMatcherCalled(): void
     {
         $requestMatcher = new AttributesRequestMatcher(['_controller' => '^AcmeBundle:Default:index$']);
         $ruleMatcher = new RuleMatcher($requestMatcher);
@@ -31,7 +31,7 @@ class RuleMatcherTest extends TestCase
         $this->assertTrue($ruleMatcher->matches($request, new Response()));
     }
 
-    public function testAdditionalCacheableStatus()
+    public function testAdditionalCacheableStatus(): void
     {
         $ruleMatcher = new RuleMatcher(new AttributesRequestMatcher([]), new CacheableResponseMatcher([400, 500]));
 

@@ -21,11 +21,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TagAttributeController extends AbstractController
 {
-    private SymfonyResponseTagger $responseTagger;
-
-    public function __construct(SymfonyResponseTagger $responseTagger)
-    {
-        $this->responseTagger = $responseTagger;
+    public function __construct(
+        private SymfonyResponseTagger $responseTagger
+    ) {
     }
 
     #[Tag('all-items')]

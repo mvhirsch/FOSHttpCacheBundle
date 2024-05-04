@@ -24,8 +24,6 @@ interface RuleMatcherInterface
 {
     /**
      * Check whether the request and response both match.
-     *
-     * @return bool True if request and response match, false otherwise
      */
-    public function matches(Request $request, Response $response);
+    public function matches(Request $request, Response $response): bool;
 }

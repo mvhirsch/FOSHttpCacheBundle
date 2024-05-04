@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class NonErrorResponseMatcherTest extends TestCase
 {
-    public function testSuccess()
+    public function testSuccess(): void
     {
         $matcher = new NonErrorResponseMatcher();
 
@@ -28,7 +28,7 @@ class NonErrorResponseMatcherTest extends TestCase
         $this->assertTrue($matcher->matches($response));
     }
 
-    public function testError()
+    public function testError(): void
     {
         $matcher = new NonErrorResponseMatcher();
 
