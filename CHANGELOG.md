@@ -4,6 +4,11 @@ Changelog
 2.x
 ===
 
+2.17.1
+------
+
+* Fix readthedocs build.
+
 2.17.0
 ------
 
