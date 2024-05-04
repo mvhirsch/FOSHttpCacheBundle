@@ -20,9 +20,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class FOSHttpCacheBundle extends Bundle
 {
-    /**
-     * {@inheritdoc}
-     */
     public function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new LoggerPass());

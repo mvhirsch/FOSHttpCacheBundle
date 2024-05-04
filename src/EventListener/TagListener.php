@@ -43,7 +43,7 @@ final class TagListener extends AbstractRuleListener implements EventSubscriberI
         SymfonyResponseTagger $tagHandler,
         RuleMatcherInterface $cacheableRule,
         RuleMatcherInterface $mustInvalidateRule,
-        ExpressionLanguage $expressionLanguage = null
+        ?ExpressionLanguage $expressionLanguage = null
     ) {
         $this->cacheManager = $cacheManager;
         $this->symfonyResponseTagger = $tagHandler;
@@ -94,9 +94,6 @@ final class TagListener extends AbstractRuleListener implements EventSubscriberI
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

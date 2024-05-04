@@ -64,9 +64,6 @@ final class CacheControlListener implements EventSubscriberInterface
         $this->debugHeader = $debugHeader;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

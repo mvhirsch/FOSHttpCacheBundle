@@ -3,3 +3,4 @@ vendor/
 composer.lock
 phpunit.xml
 Resources/doc/_build
+.php-cs-fixer.cache

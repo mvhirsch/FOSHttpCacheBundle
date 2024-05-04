@@ -222,15 +222,15 @@ class FOSHttpCacheExtensionTest extends TestCase
     {
         $container = $this->createContainer();
         $this->extension->load([
-                                   [
-                                       'proxy_client' => [
-                                           'fastly' => [
-                                               'service_identifier' => 'test',
-                                               'authentication_token' => 'test',
-                                           ],
-                                       ],
-                                   ],
-                               ], $container);
+            [
+                'proxy_client' => [
+                    'fastly' => [
+                        'service_identifier' => 'test',
+                        'authentication_token' => 'test',
+                    ],
+                ],
+            ],
+        ], $container);
 
         $this->assertFalse($container->hasDefinition('fos_http_cache.proxy_client.varnish'));
         $this->assertTrue($container->hasDefinition('fos_http_cache.proxy_client.fastly'));
@@ -292,20 +292,20 @@ class FOSHttpCacheExtensionTest extends TestCase
         $this->expectExceptionMessage('You can not enable cache tagging with the nginx client');
 
         $config = [
-                'proxy_client' => [
-                    'nginx' => [
-                        'http' => [
-                            'base_url' => 'my_hostname',
-                            'servers' => [
-                                '127.0.0.1',
-                            ],
+            'proxy_client' => [
+                'nginx' => [
+                    'http' => [
+                        'base_url' => 'my_hostname',
+                        'servers' => [
+                            '127.0.0.1',
                         ],
                     ],
                 ],
-                'tags' => [
-                    'enabled' => true,
-                ],
-            ];
+            ],
+            'tags' => [
+                'enabled' => true,
+            ],
+        ];
 
         $container = $this->createContainer();
         $this->extension->load([$config], $container);

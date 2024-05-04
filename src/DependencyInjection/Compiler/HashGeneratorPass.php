@@ -23,9 +23,6 @@ final class HashGeneratorPass implements CompilerPassInterface
 {
     public const TAG_NAME = 'fos_http_cache.user_context_provider';
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         if (!$container->has('fos_http_cache.user_context.hash_generator')) {

@@ -47,7 +47,7 @@ final class InvalidationListener extends AbstractRuleListener implements EventSu
         CacheManager $cacheManager,
         UrlGeneratorInterface $urlGenerator,
         RuleMatcherInterface $mustInvalidateRule,
-        ExpressionLanguage $expressionLanguage = null
+        ?ExpressionLanguage $expressionLanguage = null
     ) {
         $this->cacheManager = $cacheManager;
         $this->urlGenerator = $urlGenerator;
@@ -109,9 +109,6 @@ final class InvalidationListener extends AbstractRuleListener implements EventSu
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

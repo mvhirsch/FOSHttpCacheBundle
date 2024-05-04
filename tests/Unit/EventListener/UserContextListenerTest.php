@@ -543,7 +543,7 @@ class UserContextListenerTest extends TestCase
         );
     }
 
-    protected function getKernelResponseEvent(Request $request, Response $response = null, $type = HttpKernelInterface::MAIN_REQUEST): ResponseEvent
+    protected function getKernelResponseEvent(Request $request, ?Response $response = null, $type = HttpKernelInterface::MAIN_REQUEST): ResponseEvent
     {
         return new ResponseEvent(
             \Mockery::mock(HttpKernelInterface::class),

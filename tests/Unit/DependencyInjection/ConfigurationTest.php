@@ -402,10 +402,10 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
         $formats = array_map(static function (string $path) {
             return __DIR__.'/../../Resources/Fixtures/'.$path;
         }, [
-               'config/fastly.yml',
-               'config/fastly.xml',
-               'config/fastly.php',
-           ]);
+            'config/fastly.yml',
+            'config/fastly.xml',
+            'config/fastly.php',
+        ]);
 
         foreach ($formats as $format) {
             $this->assertProcessedConfigurationEquals($expectedConfiguration, [$format]);

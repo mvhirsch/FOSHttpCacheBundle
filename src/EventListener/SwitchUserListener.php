@@ -25,9 +25,6 @@ final class SwitchUserListener implements EventSubscriberInterface
         $this->invalidator = $invalidator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

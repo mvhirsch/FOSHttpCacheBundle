@@ -39,9 +39,6 @@ final class FlashMessageListener implements EventSubscriberInterface
         $this->options = $resolver->resolve($options);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

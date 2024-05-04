@@ -186,7 +186,7 @@ class InvalidationListenerTest extends TestCase
         $this->listener->onConsoleTerminate($event);
     }
 
-    protected function getEvent(Request $request, Response $response = null): TerminateEvent
+    protected function getEvent(Request $request, ?Response $response = null): TerminateEvent
     {
         return new TerminateEvent(
             \Mockery::mock(HttpKernelInterface::class),

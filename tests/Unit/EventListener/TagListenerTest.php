@@ -185,7 +185,7 @@ class TagListenerTest extends TestCase
         $this->listener->onKernelResponse($event);
     }
 
-    private function getEvent(Request $request, Response $response = null): ResponseEvent
+    private function getEvent(Request $request, ?Response $response = null): ResponseEvent
     {
         return new ResponseEvent(
             \Mockery::mock(HttpKernelInterface::class),

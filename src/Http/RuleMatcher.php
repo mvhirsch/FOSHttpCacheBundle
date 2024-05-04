@@ -29,10 +29,6 @@ final class RuleMatcher implements RuleMatcherInterface
 
     private ?ResponseMatcherInterface $responseMatcher;
 
-    /**
-     * @param RequestMatcherInterface  $requestMatcher|null  Request matcher
-     * @param ResponseMatcherInterface $responseMatcher|null Response matcher
-     */
     public function __construct(
         ?RequestMatcherInterface $requestMatcher = null,
         ?ResponseMatcherInterface $responseMatcher = null
@@ -41,9 +37,6 @@ final class RuleMatcher implements RuleMatcherInterface
         $this->responseMatcher = $responseMatcher;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function matches(Request $request, Response $response)
     {
         if ($this->requestMatcher && !$this->requestMatcher->matches($request)) {

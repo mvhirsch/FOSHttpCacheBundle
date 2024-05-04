@@ -30,9 +30,6 @@ class CacheTagExtension extends AbstractExtension
         $this->responseTagger = $responseTagger;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions(): array
     {
         return [

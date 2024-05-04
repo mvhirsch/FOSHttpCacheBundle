@@ -26,9 +26,6 @@ final class RequestMatcher implements RequestMatcherInterface
         $this->method = $method;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function matches(Request $request): bool
     {
         if (null !== $this->accept && $this->accept != $request->headers->get('accept', null)) {

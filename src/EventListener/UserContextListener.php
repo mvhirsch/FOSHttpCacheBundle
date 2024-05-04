@@ -64,8 +64,8 @@ final class UserContextListener implements EventSubscriberInterface
     public function __construct(
         RequestMatcherInterface $requestMatcher,
         HashGenerator $hashGenerator,
-        RequestMatcherInterface $anonymousRequestMatcher = null,
-        ResponseTagger $responseTagger = null,
+        ?RequestMatcherInterface $anonymousRequestMatcher = null,
+        ?ResponseTagger $responseTagger = null,
         array $options = [],
         bool $hasSessionListener = true
     ) {
@@ -220,9 +220,6 @@ final class UserContextListener implements EventSubscriberInterface
         $response->setVary($vary, true);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [
