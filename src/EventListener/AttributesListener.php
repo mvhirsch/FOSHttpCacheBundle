@@ -38,7 +38,8 @@ final class AttributesListener implements EventSubscriberInterface
             if ($key = match (get_class($instance)) {
                 InvalidatePath::class => '_invalidate_path',
                 InvalidateRoute::class => '_invalidate_route',
-                Tag::class => '_tag'
+                Tag::class => '_tag',
+                default => false,
             }) {
                 $attributes[$key][] = $instance;
             }

@@ -4,6 +4,11 @@ Changelog
 3.x
 ===
 
+3.0.1
+-----
+
+* Fixed regression in AttributesListener: Ignore other attributes on controller methods.
+
 3.0.0
 -----
 
