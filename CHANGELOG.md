@@ -4,6 +4,11 @@ Changelog
 3.x
 ===
 
+unreleased
+----------
+
+* Fixed extension to depend on the DependencyInjection component rather than the HttpKernel.
+
 3.0.1
 -----
 
