@@ -21,7 +21,7 @@ use Twig\TwigFunction;
 class CacheTagExtension extends AbstractExtension
 {
     public function __construct(
-        private readonly ResponseTagger $responseTagger
+        private readonly ResponseTagger $responseTagger,
     ) {
     }
 

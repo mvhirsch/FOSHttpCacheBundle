@@ -30,7 +30,7 @@ abstract class AbstractRuleListener
      */
     public function addRule(
         RequestMatcherInterface $requestMatcher,
-        array $settings = []
+        array $settings = [],
     ): void {
         $this->rulesMap[] = [$requestMatcher, $settings];
     }

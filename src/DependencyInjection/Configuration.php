@@ -37,7 +37,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 final class Configuration implements ConfigurationInterface
 {
     public function __construct(
-        private readonly bool $debug
+        private readonly bool $debug,
     ) {
     }
 

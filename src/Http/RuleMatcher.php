@@ -27,7 +27,7 @@ final class RuleMatcher implements RuleMatcherInterface
 {
     public function __construct(
         private readonly ?RequestMatcherInterface $requestMatcher = null,
-        private readonly ?ResponseMatcherInterface $responseMatcher = null
+        private readonly ?ResponseMatcherInterface $responseMatcher = null,
     ) {
     }
 

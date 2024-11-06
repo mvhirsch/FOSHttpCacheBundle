@@ -58,7 +58,7 @@ final class UserContextListener implements EventSubscriberInterface
          * Whether the application has a session listener and therefore could
          * require the AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER.
          */
-        private readonly bool $hasSessionListener = true
+        private readonly bool $hasSessionListener = true,
     ) {
         $resolver = new OptionsResolver();
         $resolver->setDefaults([

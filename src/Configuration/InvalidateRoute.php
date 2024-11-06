@@ -20,7 +20,7 @@ class InvalidateRoute
 
     public function __construct(
         string|array $data = [],
-        array $params = []
+        array $params = [],
     ) {
         $values = [];
         if (is_string($data)) {

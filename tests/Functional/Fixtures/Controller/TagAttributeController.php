@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 class TagAttributeController extends AbstractController
 {
     public function __construct(
-        private SymfonyResponseTagger $responseTagger
+        private SymfonyResponseTagger $responseTagger,
     ) {
     }
 

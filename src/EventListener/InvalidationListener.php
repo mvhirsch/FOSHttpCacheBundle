@@ -39,7 +39,7 @@ final class InvalidationListener extends AbstractRuleListener implements EventSu
         private readonly CacheManager $cacheManager,
         private readonly UrlGeneratorInterface $urlGenerator,
         private readonly RuleMatcherInterface $mustInvalidateRule,
-        private ?ExpressionLanguage $expressionLanguage = null
+        private ?ExpressionLanguage $expressionLanguage = null,
     ) {
     }
 

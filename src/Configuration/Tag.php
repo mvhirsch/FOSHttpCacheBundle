@@ -26,7 +26,7 @@ class Tag
 
     public function __construct(
         string|array $data = [],
-        ?Expression $expression = null
+        ?Expression $expression = null,
     ) {
         $values = [];
         if (is_string($data)) {

@@ -23,7 +23,7 @@ class InvalidatePath
      * @param string|string[] $data
      */
     public function __construct(
-        string|array $data = []
+        string|array $data = [],
     ) {
         $values = [];
         if (is_string($data)) {
