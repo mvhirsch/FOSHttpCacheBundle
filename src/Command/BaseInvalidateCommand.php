@@ -26,7 +26,7 @@ abstract class BaseInvalidateCommand extends Command
      * is automatically loaded.
      */
     public function __construct(
-        private CacheManager $cacheManager
+        private CacheManager $cacheManager,
     ) {
         parent::__construct();
     }

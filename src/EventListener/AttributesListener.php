@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 final class AttributesListener implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly ControllerResolverInterface $controllerResolver
+        private readonly ControllerResolverInterface $controllerResolver,
     ) {
     }
 

@@ -18,7 +18,7 @@ final class RequestMatcher implements RequestMatcherInterface
 {
     public function __construct(
         private ?string $accept = 'application/vnd.fos.user-context-hash',
-        private ?string $method = null
+        private ?string $method = null,
     ) {
     }
 

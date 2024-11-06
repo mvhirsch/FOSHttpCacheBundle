@@ -55,7 +55,7 @@ final class CacheControlListener implements EventSubscriberInterface
          *
          * @var string|false Name of the header or false to add no header
          */
-        private readonly string|false $debugHeader = false
+        private readonly string|false $debugHeader = false,
     ) {
     }
 
@@ -145,7 +145,7 @@ final class CacheControlListener implements EventSubscriberInterface
      */
     public function addRule(
         RuleMatcherInterface $ruleMatcher,
-        array $settings = []
+        array $settings = [],
     ): void {
         $this->rulesMap[] = [$ruleMatcher, $settings];
     }

@@ -18,7 +18,7 @@ final class ExpressionResponseMatcher implements ResponseMatcherInterface
 {
     public function __construct(
         private readonly string $expression,
-        private ?ExpressionLanguage $expressionLanguage = null
+        private ?ExpressionLanguage $expressionLanguage = null,
     ) {
     }
 

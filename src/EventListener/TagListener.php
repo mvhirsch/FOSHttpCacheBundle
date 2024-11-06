@@ -34,7 +34,7 @@ final class TagListener extends AbstractRuleListener implements EventSubscriberI
         private readonly SymfonyResponseTagger $symfonyResponseTagger,
         private readonly RuleMatcherInterface $cacheableRule,
         private readonly RuleMatcherInterface $mustInvalidateRule,
-        private ?ExpressionLanguage $expressionLanguage = null
+        private ?ExpressionLanguage $expressionLanguage = null,
     ) {
     }
 

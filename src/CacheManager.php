@@ -31,7 +31,7 @@ class CacheManager extends CacheInvalidator
 
     public function __construct(
         private readonly ProxyClient $cache,
-        private readonly UrlGeneratorInterface $urlGenerator
+        private readonly UrlGeneratorInterface $urlGenerator,
     ) {
         parent::__construct($cache);
     }

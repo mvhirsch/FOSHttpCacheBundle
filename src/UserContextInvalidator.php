@@ -18,7 +18,7 @@ class UserContextInvalidator
     public const USER_CONTEXT_TAG_PREFIX = 'fos_http_cache_hashlookup-';
 
     public function __construct(
-        private readonly TagCapable $tagger
+        private readonly TagCapable $tagger,
     ) {
     }
 
